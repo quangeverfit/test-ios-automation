@@ -1,0 +1,122 @@
+{
+    "cells": [
+        {
+            "language": "shellscript",
+            "source": [
+                "npm install jsonwebtoken"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "",
+                                "up to date, audited 17 packages in 642ms",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "shellscript",
+            "source": [
+                "npm install fs"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "",
+                                "up to date, audited 17 packages in 497ms",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "shellscript",
+            "source": [
+                ""
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stderr",
+                            "value": [
+                                "/bin/sh: -c: line 0: syntax error near unexpected token `('",
+                                "/bin/sh: -c: line 0: `const abc = require('./Steps/step_1_generate_token.js')'",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const jwt = require('jsonwebtoken');\nconst fs = require(\"fs\")\nconst abc = require('./Steps/step_1_generate_token.js')\n\n\nconst privateKey = fs.readFileSync('AuthKey_KY66U87JAX.p8')\nconst options = {\n  header: {\n    \"alg\": \"ES256\",\n    \"kid\": \"KY66U87JAX\",\n    \"typ\": \"JWT\"\n  }\n}\nconsole.log(2);\nlet now = new Date().getTime() / 1000\nlet exp = now +  3*60\nconst payload = {\n  \"iss\": \"dc7206cb-b549-42d5-b47d-cf8192886eb0\",\n  \"iat\": now,\n  \"exp\": exp,\n  \"aud\": \"appstoreconnect-v1\"\n}\nconst token = jwt.sign(payload, privateKey, options);\nconst b = abc()"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "2",
+                                ""
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.error",
+                            "value": {
+                                "name": "TypeError",
+                                "message": "abc is not a function",
+                                "stack": "    at <Cell 4> [24, 6]\n    at <Cell 4> [25, 46]\n    at Script.runInContext (node:vm:139:12)\n    at Script.runInNewContext (node:vm:144:17)\n    at Object.runInNewContext (node:vm:298:38)\n    at C (/Users/quangpham/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:113345)\n    at t.execCode (/Users/quangpham/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:114312)\n    at k.<anonymous> (/Users/quangpham/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:142156)\n    at k.emit (node:events:394:28)\n    at k.emit (node:domain:475:12)"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(token);\nconsole.log(b);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IktZNjZVODdKQVgifQ.eyJpc3MiOiJkYzcyMDZjYi1iNTQ5LTQyZDUtYjQ3ZC1jZjgxOTI4ODZlYjAiLCJpYXQiOjE2NTc2ODUwODQuNzU0LCJleHAiOjE2NTc2ODUyNjQuNzU0LCJhdWQiOiJhcHBzdG9yZWNvbm5lY3QtdjEifQ.pfHaOlL1flpqBFJY6l9Eqo5TX_9DmU-FF7xNbZ5yTKYI6KIqP7tEK_ISbvSkQ9lCT1IStaI9EP0K-hKpwxHk9Q",
+                                "undefined",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        }
+    ]
+}

@@ -17,8 +17,7 @@ const payload = {
   "exp": exp,
   "aud": "appstoreconnect-v1"
 }
-console.log("Payload", payload);
-console.log("options", options);
 
 var token = jwt.sign(payload, privateKey, options);
-console.log("Token is", token);
+console.log(token);
+// process.stdout.write(token)

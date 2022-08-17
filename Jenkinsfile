@@ -12,11 +12,6 @@ pipeline {
                 returnStdout: true,
                 script: 'echo "clang"'
             )}"""
-        // Using returnStatus
-        EXIT_STATUS = """${sh(
-                returnStatus: true,
-                script: 'exit 1'
-            )}"""
     }
   stages {
     stage('Install dependencies') {
